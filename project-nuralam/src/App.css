@@ -1,0 +1,53 @@
+.navbar-custom {
+  background-color: #2196F3;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link,
+.navbar-custom .dropdown-item {
+  color: rgb(0, 0, 0) !important;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .dropdown-item:hover {
+  color: #ffffff !important; 
+  background-color: #28a745;
+  border-radius: 10px;
+}
+
+
+body {
+  background-color: #e4e4e4;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Menu */
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Gambar produk */
+.card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Judul menu */
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Harga */
+.card-text {
+  color: #28a745;
+  font-weight: bold;
+}
