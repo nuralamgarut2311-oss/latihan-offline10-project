@@ -7,5 +7,5 @@ export { default as Navbar } from "./Navbar";
 export { default as ListCategory } from "./ListCategory";
 export { default as Menu } from "./Menu";
 export { default as Hasil } from "./Hasil";
-export { default as ResetButton } from "./ResetButton"
+export { default as Transaksi } from "./Transaksi";
 

@@ -1,26 +1,27 @@
-import React, { Component } from 'react';
-import { Col, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
-import ResetButton from './ResetButton'; // import tombol reset
+// src/components/Hasil.js
+import React, { Component } from "react";
+import { Col, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
-export default class Hasil extends Component {
+class Hasil extends Component {
   render() {
-    // ambil semua props dari App.js
-    const { 
-      keranjangs, 
-      resetKeranjang, 
-      tambahJumlah, 
-      kurangiJumlah, 
-      hapusKeranjang 
+    const {
+      keranjangs,
+      tambahJumlah,
+      kurangiJumlah,
+      hapusKeranjang,
+      checkout,
+      history,
     } = this.props;
 
     const totalBayar = keranjangs
       ? keranjangs.reduce((total, keranjang) => total + keranjang.total_harga, 0)
       : 0;
-    
+
     return (
       <Col md={3}>
         <h5>
-          <strong>Hasil</strong>
+          <strong>Keranjang</strong>
         </h5>
         <hr />
         <ListGroup variant="flush">
@@ -33,30 +34,29 @@ export default class Hasil extends Component {
                 <div className="ms-2 me-auto w-100">
                   <div className="fw-bold">{keranjang.product.nama}</div>
                   <div>
-                    Rp. {keranjang.product.harga.toLocaleString('id-ID')}
+                    Rp. {keranjang.product.harga.toLocaleString("id-ID")}
                   </div>
 
-                  {/* tombol pindah ke bawah harga */}
                   <div className="d-flex align-items-center mt-2">
-                    <Button 
-                      variant="success" 
-                      size="sm" 
+                    <Button
+                      variant="success"
+                      size="sm"
                       onClick={() => tambahJumlah(keranjang.id)}
                     >
                       +
                     </Button>
                     <span className="mx-2">{keranjang.jumlah}</span>
-                    <Button 
-                      variant="warning" 
-                      size="sm" 
+                    <Button
+                      variant="warning"
+                      size="sm"
                       onClick={() => kurangiJumlah(keranjang.id)}
                     >
                       -
                     </Button>
-                    <Button 
-                      variant="danger" 
-                      size="sm" 
-                      className="ms-2" 
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      className="ms-2"
                       onClick={() => hapusKeranjang(keranjang.id)}
                     >
                       x
@@ -73,14 +73,26 @@ export default class Hasil extends Component {
         <hr />
         <div className="d-flex justify-content-between align-items-center">
           <h6 className="fw-bold">Total:</h6>
-          <h6 className="fw-bold">
-            Rp. {totalBayar.toLocaleString('id-ID')}
-          </h6>
+          <h6 className="fw-bold">Rp. {totalBayar.toLocaleString("id-ID")}</h6>
         </div>
 
-        {/* Tombol reset keranjang */}
-        <ResetButton resetKeranjang={resetKeranjang} />
+        {/* Tombol checkout */}
+        <div className="mt-2 text-end">
+          {keranjangs.length > 0 && (
+            <Button
+              variant="success"
+              onClick={() => {
+                checkout(); // simpan pesanan
+                history.push("/transaksi"); // redirect ke halaman transaksi
+              }}
+            >
+              Bayar / Checkout
+            </Button>
+          )}
+        </div>
       </Col>
     );
   }
 }
+
+export default withRouter(Hasil);
