@@ -83,7 +83,15 @@ class Hasil extends Component {
               variant="success"
               onClick={() => {
                 checkout(); // simpan pesanan
-                history.push("/transaksi"); // redirect ke halaman transaksi
+                <Button
+  variant="success"
+  onClick={() => {
+    checkout(); // simpan pesanan dan redirect
+  }}
+>
+  Bayar / Checkout
+</Button>
+
               }}
             >
               Bayar / Checkout
