@@ -25,7 +25,8 @@
       "category": {
         "id": 1,
         "nama": "Makanan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "2",
@@ -38,7 +39,8 @@
       "category": {
         "id": 1,
         "nama": "Makanan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "3",
@@ -51,7 +53,8 @@
       "category": {
         "id": 1,
         "nama": "Makanan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "4",
@@ -216,16 +219,16 @@
   "keranjang": [],
   "pesanan": [
     {
-      "id": "1001",
-      "timestamp": "2025-09-25T13:36:37",
+      "id": "e993",
       "menus": [
         {
-          "id": "1",
+          "id": 1758852431416,
           "product": {
             "id": "1",
             "kode": "K-01",
             "nama": "Sate Ayam",
             "harga": 16000,
+            "is_ready": true,
             "gambar": "sate-ayam.jpg",
             "rating": 9.9,
             "category": {
@@ -233,34 +236,93 @@
               "nama": "Makanan"
             }
           },
-          "jumlah": 2,
-          "total_harga": 32000
-        },
+          "jumlah": 1,
+          "total_harga": 16000
+        }
+      ],
+      "total_bayar": 16000,
+      "timestamp": "2025-09-26T02:07:12.968Z"
+    },
+    {
+      "id": "5afa",
+      "menus": [
         {
-          "id": "11",
+          "id": 1758852431416,
           "product": {
-            "id": "11",
-            "kode": "K-11",
-            "nama": "Coffe Late",
-            "harga": 15000,
-            "gambar": "coffe.jpg",
-            "rating": 9.2,
+            "id": "1",
+            "kode": "K-01",
+            "nama": "Sate Ayam",
+            "harga": 16000,
+            "is_ready": true,
+            "gambar": "sate-ayam.jpg",
+            "rating": 9.9,
             "category": {
-              "id": 2,
-              "nama": "Minuman"
+              "id": 1,
+              "nama": "Makanan"
             }
           },
           "jumlah": 1,
-          "total_harga": 15000
+          "total_harga": 16000
         }
       ],
-      "total_bayar": 47000
+      "total_bayar": 16000,
+      "timestamp": "2025-09-26T02:07:12.968Z"
     },
     {
-      "id": "80d1",
+      "id": "ec26",
       "menus": [
         {
-          "id": 1758783739265,
+          "id": 1758852443329,
+          "product": {
+            "id": "2",
+            "kode": "K-02",
+            "nama": "Nasi Goreng",
+            "harga": 14000,
+            "is_ready": true,
+            "gambar": "nasi-goreng.jpg",
+            "rating": 8.5,
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "jumlah": 1,
+          "total_harga": 14000
+        }
+      ],
+      "total_bayar": 14000,
+      "timestamp": "2025-09-26T02:07:25.106Z"
+    },
+    {
+      "id": "8b76",
+      "menus": [
+        {
+          "id": 1758852443329,
+          "product": {
+            "id": "2",
+            "kode": "K-02",
+            "nama": "Nasi Goreng",
+            "harga": 14000,
+            "is_ready": true,
+            "gambar": "nasi-goreng.jpg",
+            "rating": 8.5,
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "jumlah": 1,
+          "total_harga": 14000
+        }
+      ],
+      "total_bayar": 14000,
+      "timestamp": "2025-09-26T02:07:25.106Z"
+    },
+    {
+      "id": "5a77",
+      "menus": [
+        {
+          "id": 1758852871798,
           "product": {
             "id": "3",
             "kode": "K-03",
@@ -279,13 +341,13 @@
         }
       ],
       "total_bayar": 12000,
-      "timestamp": "2025-09-25T07:02:21.185Z"
+      "timestamp": "2025-09-26T02:14:33.260Z"
     },
     {
-      "id": "6114",
+      "id": "09eb",
       "menus": [
         {
-          "id": 1758783739265,
+          "id": 1758852897229,
           "product": {
             "id": "3",
             "kode": "K-03",
@@ -304,265 +366,7 @@
         }
       ],
       "total_bayar": 12000,
-      "timestamp": "2025-09-25T07:02:21.185Z"
-    },
-    {
-      "id": "424d",
-      "menus": [
-        {
-          "id": 1758784756120,
-          "product": {
-            "id": "3",
-            "kode": "K-03",
-            "nama": "Nasi Rames",
-            "harga": 12000,
-            "is_ready": true,
-            "gambar": "nasi-rames.jpg",
-            "rating": 8,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 12000
-        },
-        {
-          "id": 1758784757313,
-          "product": {
-            "id": "5",
-            "kode": "K-05",
-            "nama": "Mie Goreng",
-            "harga": 13000,
-            "is_ready": true,
-            "gambar": "mie-goreng.jpg",
-            "rating": 8.2,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 13000
-        }
-      ],
-      "total_bayar": 25000,
-      "timestamp": "2025-09-25T07:19:26.080Z"
-    },
-    {
-      "id": "0797",
-      "menus": [
-        {
-          "id": 1758784756120,
-          "product": {
-            "id": "3",
-            "kode": "K-03",
-            "nama": "Nasi Rames",
-            "harga": 12000,
-            "is_ready": true,
-            "gambar": "nasi-rames.jpg",
-            "rating": 8,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 12000
-        },
-        {
-          "id": 1758784757313,
-          "product": {
-            "id": "5",
-            "kode": "K-05",
-            "nama": "Mie Goreng",
-            "harga": 13000,
-            "is_ready": true,
-            "gambar": "mie-goreng.jpg",
-            "rating": 8.2,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 13000
-        }
-      ],
-      "total_bayar": 25000,
-      "timestamp": "2025-09-25T07:19:26.080Z"
-    },
-    {
-      "id": "da7e",
-      "menus": [
-        {
-          "id": 1758786103111,
-          "product": {
-            "id": "6",
-            "kode": "K-06",
-            "nama": "Bakso",
-            "harga": 10000,
-            "is_ready": true,
-            "gambar": "bakso.jpg",
-            "rating": 8.7,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 10000
-        }
-      ],
-      "total_bayar": 10000,
-      "timestamp": "2025-09-25T07:41:49.766Z"
-    },
-    {
-      "id": "bb9f",
-      "menus": [
-        {
-          "id": 1758786103111,
-          "product": {
-            "id": "6",
-            "kode": "K-06",
-            "nama": "Bakso",
-            "harga": 10000,
-            "is_ready": true,
-            "gambar": "bakso.jpg",
-            "rating": 8.7,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 10000
-        }
-      ],
-      "total_bayar": 10000,
-      "timestamp": "2025-09-25T07:41:49.766Z"
-    },
-    {
-      "id": "dc24",
-      "menus": [
-        {
-          "id": 1758786116592,
-          "product": {
-            "id": "11",
-            "kode": "K-11",
-            "nama": "Coffe Late",
-            "harga": 15000,
-            "is_ready": true,
-            "gambar": "coffe.jpg",
-            "rating": 9.2,
-            "category": {
-              "id": 2,
-              "nama": "Minuman"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 15000
-        },
-        {
-          "id": 1758786121951,
-          "product": {
-            "id": "12",
-            "kode": "K-12",
-            "nama": "Es Jeruk",
-            "harga": 7000,
-            "is_ready": true,
-            "gambar": "esjeruk.jpg",
-            "rating": 8.7,
-            "category": {
-              "id": 2,
-              "nama": "Minuman"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 7000
-        },
-        {
-          "id": 1758786125798,
-          "product": {
-            "id": "14",
-            "kode": "K-14",
-            "nama": "Teh Hangat",
-            "harga": 3000,
-            "is_ready": true,
-            "gambar": "teh.jpg",
-            "rating": 7.8,
-            "category": {
-              "id": 2,
-              "nama": "Minuman"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 3000
-        }
-      ],
-      "total_bayar": 25000,
-      "timestamp": "2025-09-25T07:42:08.645Z"
-    },
-    {
-      "id": "9893",
-      "menus": [
-        {
-          "id": 1758786116592,
-          "product": {
-            "id": "11",
-            "kode": "K-11",
-            "nama": "Coffe Late",
-            "harga": 15000,
-            "is_ready": true,
-            "gambar": "coffe.jpg",
-            "rating": 9.2,
-            "category": {
-              "id": 2,
-              "nama": "Minuman"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 15000
-        },
-        {
-          "id": 1758786121951,
-          "product": {
-            "id": "12",
-            "kode": "K-12",
-            "nama": "Es Jeruk",
-            "harga": 7000,
-            "is_ready": true,
-            "gambar": "esjeruk.jpg",
-            "rating": 8.7,
-            "category": {
-              "id": 2,
-              "nama": "Minuman"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 7000
-        },
-        {
-          "id": 1758786125798,
-          "product": {
-            "id": "14",
-            "kode": "K-14",
-            "nama": "Teh Hangat",
-            "harga": 3000,
-            "is_ready": true,
-            "gambar": "teh.jpg",
-            "rating": 7.8,
-            "category": {
-              "id": 2,
-              "nama": "Minuman"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 3000
-        }
-      ],
-      "total_bayar": 25000,
-      "timestamp": "2025-09-25T07:42:08.645Z"
+      "timestamp": "2025-09-26T02:14:58.508Z"
     }
   ]
 }

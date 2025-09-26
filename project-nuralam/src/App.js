@@ -146,6 +146,7 @@ import Home from "./pages/Home";
 import Sukses from "./pages/Sukses";
 import Transaksi from "./component/Transaksi";
 import RiwayatTransaksi from "./pages/RiwayatTransaksi";
+import Stock from "./pages/Stock"
 
 function App() {
   return (
@@ -155,6 +156,7 @@ function App() {
         <Route path="/sukses" component={Sukses} />
         <Route path="/transaksi" component={Transaksi} />
         <Route path="/riwayat-transaksi" component = {RiwayatTransaksi} />
+        <Route path="/stockbarang" component = {Stock}/>
       </Switch>
     </BrowserRouter>
   );

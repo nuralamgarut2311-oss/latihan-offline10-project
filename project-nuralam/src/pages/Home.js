@@ -1,3 +1,4 @@
+// src/pages/Home.js
 import React, { Component } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { ListCategory, Menu, Navbar, Hasil } from "../component/indek";
@@ -104,59 +105,51 @@ export default class Home extends Component {
     this.setState({ keranjangs: newKeranjangs });
   };
 
-  // src/pages/Home.js (hanya bagian checkout yang diubah)
+  checkout = () => {
+    const { keranjangs } = this.state;
+    if (keranjangs.length === 0) return;
 
-checkout = () => {
-  const { keranjangs } = this.state;
-  if (keranjangs.length === 0) return;
+    const timestamp = new Date().toISOString();
+    const total_bayar = keranjangs.reduce(
+      (sum, item) => sum + item.total_harga,
+      0
+    );
 
-  const timestamp = new Date().toISOString();
-  const total_bayar = keranjangs.reduce(
-    (sum, item) => sum + item.total_harga,
-    0
-  );
+    const pesananBaru = {
+      menus: keranjangs,
+      total_bayar,
+      timestamp,
+    };
 
-  const pesananBaru = {
-    menus: keranjangs,
-    total_bayar,
-    timestamp,
-  };
+    axios
+      .post(API_URL + "/pesanan", pesananBaru)
+      .then((res) => {
+        // Simpan id pesanan terbaru di localStorage (opsional)
+        localStorage.setItem("lastPesananId", res.data.id);
 
-  axios
-    .post(API_URL + "/pesanan", pesananBaru)
-    .then((res) => {
-      // Simpan id pesanan terbaru di localStorage
-      localStorage.setItem("lastPesananId", res.data.id);
+        // Bersihkan keranjang
+        this.resetKeranjang();
 
-      // Bersihkan keranjang
-      this.resetKeranjang();
+        // Tampilkan notifikasi
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "Berhasil Checkout",
+        //   text: "Pesanan berhasil dikirim!",
+        //   confirmButtonText: "OK",
+        // });
 
-      // Redirect ke halaman transaksi
-      this.props.history.push("/transaksi");
-    })
-    .catch((err) => {
-      console.log(err);
-      Swal.fire({
-        icon: "error",
-        title: "Gagal Checkout",
-        text: "Terjadi kesalahan saat checkout. Silakan coba lagi.",
+        // Redirect ke halaman transaksi
+        this.props.history.push("/transaksi");
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Gagal Checkout",
+          text: "Terjadi kesalahan saat checkout. Silakan coba lagi.",
+        });
       });
-    });
-  // Simpan ke endpoint /pesanan
-  axios
-    .post(`${API_URL}/pesanan`, pesananBaru)
-    .then(() => {
-      // Kosongkan keranjang di state
-      this.setState({ keranjangs: [] });
-
-      // Redirect ke halaman transaksi
-      this.props.history.push("/transaksi");
-    })
-    .catch((err) => {
-      console.error("Gagal menyimpan pesanan:", err);
-    });
-};
-
+  };
 
   render() {
     const { menu, categoryYangDipilih, keranjangs } = this.state;

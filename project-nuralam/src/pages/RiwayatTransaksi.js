@@ -1,16 +1,10 @@
 // src/pages/RiwayatTransaksi.js
 import React, { Component } from "react";
-import {
-  Container,
-  Card,
-  ListGroup,
-  Button,
-  Spinner,
-} from "react-bootstrap";
+import {Container,Card,ListGroup,Button,Spinner,} from "react-bootstrap";
 import axios from "axios";
 import { API_URL } from "../utils/constants";
 import Navbar from "../component/Navbar";
-import "./RiwayatTransaksi.css"; // ✅ Tambahkan file CSS jika ingin styling cetak
+import "./RiwayatTransaksi.css";
 
 export default class RiwayatTransaksi extends Component {
   state = {

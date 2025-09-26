@@ -37,6 +37,7 @@ function AppNavbar() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/riwayat-transaksi">Riwayat Transaksi</Nav.Link>
+            <Nav.Link href="/stockbarang">Stock Barang</Nav.Link>
             <NavDropdown title="Rating Kategori Product" id="basic-nav-dropdown">
               <NavDropdown.Item disabled><strong>Rating Rata-rata</strong></NavDropdown.Item>
               <NavDropdown.Item>
