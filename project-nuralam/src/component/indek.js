@@ -2,6 +2,7 @@
 // import ListCategory from "./ListCategory";
 // import AppNavbar from "./Navbar";
 // import Menu from "./Menu";
+// src/pages/indek.js
 
 export { default as Navbar } from "./Navbar";
 export { default as ListCategory } from "./ListCategory";

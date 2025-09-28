@@ -67,7 +67,8 @@
       "category": {
         "id": 1,
         "nama": "Makanan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "5",
@@ -80,7 +81,8 @@
       "category": {
         "id": 1,
         "nama": "Makanan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "6",
@@ -93,7 +95,8 @@
       "category": {
         "id": 1,
         "nama": "Makanan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "7",
@@ -106,7 +109,8 @@
       "category": {
         "id": 1,
         "nama": "Makanan"
-      }
+      },
+      "stock": 1
     },
     {
       "id": "8",
@@ -119,7 +123,8 @@
       "category": {
         "id": 3,
         "nama": "Cemilan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "9",
@@ -132,7 +137,8 @@
       "category": {
         "id": 3,
         "nama": "Cemilan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "10",
@@ -145,7 +151,8 @@
       "category": {
         "id": 3,
         "nama": "Cemilan"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "11",
@@ -158,7 +165,8 @@
       "category": {
         "id": 2,
         "nama": "Minuman"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "12",
@@ -171,7 +179,8 @@
       "category": {
         "id": 2,
         "nama": "Minuman"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "13",
@@ -184,7 +193,8 @@
       "category": {
         "id": 2,
         "nama": "Minuman"
-      }
+      },
+      "stock": 0
     },
     {
       "id": "14",
@@ -197,7 +207,8 @@
       "category": {
         "id": 2,
         "nama": "Minuman"
-      }
+      },
+      "stock": 0
     }
   ],
   "rekomendasi": {
@@ -217,156 +228,5 @@
     ]
   },
   "keranjang": [],
-  "pesanan": [
-    {
-      "id": "e993",
-      "menus": [
-        {
-          "id": 1758852431416,
-          "product": {
-            "id": "1",
-            "kode": "K-01",
-            "nama": "Sate Ayam",
-            "harga": 16000,
-            "is_ready": true,
-            "gambar": "sate-ayam.jpg",
-            "rating": 9.9,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 16000
-        }
-      ],
-      "total_bayar": 16000,
-      "timestamp": "2025-09-26T02:07:12.968Z"
-    },
-    {
-      "id": "5afa",
-      "menus": [
-        {
-          "id": 1758852431416,
-          "product": {
-            "id": "1",
-            "kode": "K-01",
-            "nama": "Sate Ayam",
-            "harga": 16000,
-            "is_ready": true,
-            "gambar": "sate-ayam.jpg",
-            "rating": 9.9,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 16000
-        }
-      ],
-      "total_bayar": 16000,
-      "timestamp": "2025-09-26T02:07:12.968Z"
-    },
-    {
-      "id": "ec26",
-      "menus": [
-        {
-          "id": 1758852443329,
-          "product": {
-            "id": "2",
-            "kode": "K-02",
-            "nama": "Nasi Goreng",
-            "harga": 14000,
-            "is_ready": true,
-            "gambar": "nasi-goreng.jpg",
-            "rating": 8.5,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 14000
-        }
-      ],
-      "total_bayar": 14000,
-      "timestamp": "2025-09-26T02:07:25.106Z"
-    },
-    {
-      "id": "8b76",
-      "menus": [
-        {
-          "id": 1758852443329,
-          "product": {
-            "id": "2",
-            "kode": "K-02",
-            "nama": "Nasi Goreng",
-            "harga": 14000,
-            "is_ready": true,
-            "gambar": "nasi-goreng.jpg",
-            "rating": 8.5,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 14000
-        }
-      ],
-      "total_bayar": 14000,
-      "timestamp": "2025-09-26T02:07:25.106Z"
-    },
-    {
-      "id": "5a77",
-      "menus": [
-        {
-          "id": 1758852871798,
-          "product": {
-            "id": "3",
-            "kode": "K-03",
-            "nama": "Nasi Rames",
-            "harga": 12000,
-            "is_ready": true,
-            "gambar": "nasi-rames.jpg",
-            "rating": 8,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 12000
-        }
-      ],
-      "total_bayar": 12000,
-      "timestamp": "2025-09-26T02:14:33.260Z"
-    },
-    {
-      "id": "09eb",
-      "menus": [
-        {
-          "id": 1758852897229,
-          "product": {
-            "id": "3",
-            "kode": "K-03",
-            "nama": "Nasi Rames",
-            "harga": 12000,
-            "is_ready": true,
-            "gambar": "nasi-rames.jpg",
-            "rating": 8,
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "jumlah": 1,
-          "total_harga": 12000
-        }
-      ],
-      "total_bayar": 12000,
-      "timestamp": "2025-09-26T02:14:58.508Z"
-    }
-  ]
+  "pesanan": []
 }

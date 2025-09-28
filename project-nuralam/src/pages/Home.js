@@ -7,63 +7,90 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      menu: [],
-      categoryYangDipilih: "Makanan",
-      keranjangs: [],
-    };
-  }
+  state = {
+    menu: [],
+    categoryYangDipilih: "Makanan",
+    keranjangs: [],
+    loading: true,
+  };
 
   componentDidMount() {
     this.getProduct();
   }
 
   getProduct = () => {
-    axios.get(API_URL + "/product").then((res) => {
-      this.setState({ menu: res.data });
-    });
+    axios
+      .get(`${API_URL}/product`)
+      .then((res) => {
+        this.setState({ menu: res.data, loading: false });
+      })
+      .catch((err) => {
+        console.error("Gagal memuat produk:", err);
+        this.setState({ loading: false });
+      });
   };
 
   changeCategory = (category) => {
     this.setState({ categoryYangDipilih: category });
   };
 
-  masukkanKeranjang = (product) => {
+  masukkanKeranjang = async (product) => {
     const { keranjangs } = this.state;
+    const exist = keranjangs.find((k) => k.product.id === product.id);
+    const inCartQty = exist ? exist.jumlah : 0;
 
-    const keranjangIndex = keranjangs.findIndex(
-      (item) => item.product.id === product.id
-    );
-
-    if (keranjangIndex !== -1) {
-      const newKeranjangs = [...keranjangs];
-      newKeranjangs[keranjangIndex].jumlah += 1;
-      newKeranjangs[keranjangIndex].total_harga += product.harga;
-      this.setState({ keranjangs: newKeranjangs }, () => {
-        Swal.fire({
-          icon: "success",
-          title: "Sukses",
-          text: "Pesanan masuk keranjang",
-          confirmButtonText: "OK",
-        });
+    if (!product.stock || product.stock - inCartQty <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Stok Tidak Cukup",
+        text: `${product.nama} stok tidak cukup untuk ditambahkan.`,
       });
-    } else {
-      const newItem = {
-        id: new Date().getTime(),
-        product,
-        jumlah: 1,
-        total_harga: product.harga,
-      };
-      this.setState({ keranjangs: [...keranjangs, newItem] }, () => {
-        Swal.fire({
-          icon: "success",
-          title: "Sukses",
-          text: "Pesanan masuk keranjang",
-          confirmButtonText: "OK",
-        });
+      return;
+    }
+
+    try {
+      const stokBaru = product.stock - 1;
+      await axios.patch(`${API_URL}/product/${product.id}`, { stock: stokBaru });
+
+      const updatedMenu = this.state.menu.map((m) =>
+        m.id === product.id ? { ...m, stock: stokBaru } : m
+      );
+      this.setState({ menu: updatedMenu });
+
+      if (exist) {
+        const newKeranjangs = keranjangs.map((item) =>
+          item.product.id === product.id
+            ? {
+                ...item,
+                jumlah: item.jumlah + 1,
+                total_harga: item.total_harga + product.harga,
+              }
+            : item
+        );
+        this.setState({ keranjangs: newKeranjangs });
+      } else {
+        const newItem = {
+          id: new Date().getTime(),
+          product: { ...product, stock: stokBaru },
+          jumlah: 1,
+          total_harga: product.harga,
+        };
+        this.setState({ keranjangs: [...keranjangs, newItem] });
+      }
+
+      Swal.fire({
+        icon: "success",
+        title: "Sukses",
+        text: "Pesanan masuk keranjang",
+        timer: 1200,
+        showConfirmButton: false,
+      });
+    } catch (err) {
+      console.error("Gagal update stok:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Gagal mengurangi stok produk.",
       });
     }
   };
@@ -105,57 +132,61 @@ export default class Home extends Component {
     this.setState({ keranjangs: newKeranjangs });
   };
 
-  checkout = () => {
-    const { keranjangs } = this.state;
+  updateMenuStok = (productId, stokBaru) => {
+    const updatedMenu = this.state.menu.map((m) =>
+      m.id === productId ? { ...m, stock: stokBaru } : m
+    );
+    this.setState({ menu: updatedMenu });
+  };
+
+  checkout = async () => {
+    const { keranjangs, menu } = this.state;
     if (keranjangs.length === 0) return;
 
-    const timestamp = new Date().toISOString();
-    const total_bayar = keranjangs.reduce(
-      (sum, item) => sum + item.total_harga,
-      0
-    );
+    try {
+      const total_bayar = keranjangs.reduce((sum, item) => sum + item.total_harga, 0);
+      const pesananBaru = {
+        menus: keranjangs,
+        total_bayar,
+        timestamp: new Date().toISOString(),
+      };
 
-    const pesananBaru = {
-      menus: keranjangs,
-      total_bayar,
-      timestamp,
-    };
+      const res = await axios.post(`${API_URL}/pesanan`, pesananBaru);
+      if (res.data && res.data.id) localStorage.setItem("lastPesananId", res.data.id);
 
-    axios
-      .post(API_URL + "/pesanan", pesananBaru)
-      .then((res) => {
-        // Simpan id pesanan terbaru di localStorage (opsional)
-        localStorage.setItem("lastPesananId", res.data.id);
-
-        // Bersihkan keranjang
-        this.resetKeranjang();
-
-        // Tampilkan notifikasi
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "Berhasil Checkout",
-        //   text: "Pesanan berhasil dikirim!",
-        //   confirmButtonText: "OK",
-        // });
-
-        // Redirect ke halaman transaksi
-        this.props.history.push("/transaksi");
-      })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire({
-          icon: "error",
-          title: "Gagal Checkout",
-          text: "Terjadi kesalahan saat checkout. Silakan coba lagi.",
-        });
+      // 🔄 Kurangi stok menu sesuai jumlah di keranjang
+      const updatedMenu = menu.map((m) => {
+        const keranjangItem = keranjangs.find((k) => k.product.id === m.id);
+        if (keranjangItem) return { ...m, stock: m.stock - keranjangItem.jumlah };
+        return m;
       });
+      this.setState({ menu: updatedMenu });
+
+      this.resetKeranjang();
+
+      Swal.fire({
+        icon: "success",
+        title: "Checkout Berhasil",
+        text: "Pesanan dicatat.",
+      }).then(() => {
+        this.props.history.push("/transaksi");
+      });
+    } catch (err) {
+      console.error("Gagal checkout:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Checkout",
+        text: "Pesanan gagal disimpan.",
+      });
+    }
   };
 
   render() {
-    const { menu, categoryYangDipilih, keranjangs } = this.state;
+    const { menu, categoryYangDipilih, keranjangs, loading } = this.state;
 
     const filteredMenu = menu.filter(
       (item) =>
+        item.category &&
         item.category.nama.toLowerCase() === categoryYangDipilih.toLowerCase()
     );
 
@@ -175,11 +206,13 @@ export default class Home extends Component {
                 </h5>
                 <hr />
                 <Row>
-                  {filteredMenu.length > 0 ? (
-                    filteredMenu.map((menu) => (
+                  {loading ? (
+                    <p>Memuat produk...</p>
+                  ) : filteredMenu.length > 0 ? (
+                    filteredMenu.map((menuItem) => (
                       <Menu
-                        key={menu.id}
-                        menu={menu}
+                        key={menuItem.id}
+                        menu={menuItem}
                         masukkanKeranjang={this.masukkanKeranjang}
                       />
                     ))
@@ -190,11 +223,12 @@ export default class Home extends Component {
               </Col>
               <Hasil
                 keranjangs={keranjangs}
-                resetKeranjang={this.resetKeranjang}
+                menu={menu}
                 tambahJumlah={this.tambahJumlah}
                 kurangiJumlah={this.kurangiJumlah}
                 hapusKeranjang={this.hapusKeranjang}
                 checkout={this.checkout}
+                updateMenuStok={this.updateMenuStok}
               />
             </Row>
           </Container>

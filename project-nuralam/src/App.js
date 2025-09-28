@@ -141,26 +141,33 @@
 
 // src/App.js
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Sukses from "./pages/Sukses";
 import Transaksi from "./component/Transaksi";
 import RiwayatTransaksi from "./pages/RiwayatTransaksi";
-import Stock from "./pages/Stock"
+import Stock from "./pages/Stock";
+import Login from "./pages/Login";
+import PrivateRoute from "./component/PrivateRoute";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/sukses" component={Sukses} />
-        <Route path="/transaksi" component={Transaksi} />
-        <Route path="/riwayat-transaksi" component = {RiwayatTransaksi} />
-        <Route path="/stockbarang" component = {Stock}/>
+        <Route path="/login" component={Login} />
+
+        {/* Halaman yang butuh login */}
+        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute path="/sukses" component={Sukses} />
+        <PrivateRoute path="/transaksi" component={Transaksi} />
+        <PrivateRoute path="/riwayat-transaksi" component={RiwayatTransaksi} />
+        <PrivateRoute path="/stockbarang" component={Stock} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 
 export default App;
+
+
 
